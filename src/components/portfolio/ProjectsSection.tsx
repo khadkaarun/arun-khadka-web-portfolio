@@ -19,7 +19,8 @@ const ProjectsSection = () => {
         "🔐 Role-based access (customer, staff, admin) with secure Edge Functions",
         "📈 PWA + Capacitor for native mobile experience"
       ],
-      github: "https://github.com/khadkaarun/Full-Stack-Restaurant-Website"
+      github: "https://github.com/khadkaarun/Full-Stack-Restaurant-Website",
+      link: "https://full-stack-restaurant-website.vercel.app/"
     },
     {
       title: "📈 Nittha Siam Kitchen",
