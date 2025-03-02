@@ -7,9 +7,8 @@ import { Github, Linkedin, Mail } from "lucide-react";
 
 const ContactSection = () => {
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted");
+    // FormSubmit will handle the form submission automatically
+    // No need to prevent default behavior
   };
 
   return (
@@ -29,19 +28,30 @@ const ContactSection = () => {
               <CardTitle>Send me a message</CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form 
+                action="https://formsubmit.co/khadkaarun366@gmail.com" 
+                method="POST" 
+                className="space-y-4"
+              >
+                {/* FormSubmit Configuration */}
+                <input type="hidden" name="_subject" value="New Contact Form Submission from Portfolio" />
+                <input type="hidden" name="_next" value="https://khadkaarun.github.io/arun-khadka-web-portfolio" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_template" value="table" />
+                
                 <div>
                   <Label htmlFor="name">Name</Label>
-                  <Input id="name" type="text" required className="mt-1" />
+                  <Input id="name" name="name" type="text" required className="mt-1" />
                 </div>
                 <div>
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" required className="mt-1" />
+                  <Input id="email" name="email" type="email" required className="mt-1" />
                 </div>
                 <div>
                   <Label htmlFor="message">Message</Label>
                   <Textarea 
                     id="message" 
+                    name="message"
                     required 
                     className="mt-1 min-h-[120px]" 
                     placeholder="Tell me about your project or opportunity..."
