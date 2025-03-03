@@ -35,7 +35,6 @@ const ContactSection = () => {
               >
                 {/* FormSubmit Configuration */}
                 <input type="hidden" name="_subject" value="New Contact Form Submission from Portfolio" />
-                <input type="hidden" name="_next" value="https://khadkaarun.github.io/arun-khadka-web-portfolio" />
                 <input type="hidden" name="_captcha" value="false" />
                 <input type="hidden" name="_template" value="table" />
                 
