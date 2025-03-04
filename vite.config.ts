@@ -19,19 +19,22 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: "dist",
     sourcemap: false,
-    target: "esnext",
-    minify: "esbuild",
+    target: "es2020",
+    minify: "terser",
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
-        manualChunks: undefined,
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          ui: ['@radix-ui/react-slot', '@radix-ui/react-dialog']
+        },
       },
-      external: [],
     },
   },
   define: {
     global: "globalThis",
   },
-  optimizeDeps: {
-    include: ["react", "react-dom"],
+  esbuild: {
+    target: "es2020",
   },
 }));
