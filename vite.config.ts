@@ -19,13 +19,19 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: "dist",
     sourcemap: false,
+    target: "esnext",
+    minify: "esbuild",
     rollupOptions: {
       output: {
         manualChunks: undefined,
       },
+      external: [],
     },
   },
   define: {
     global: "globalThis",
+  },
+  optimizeDeps: {
+    include: ["react", "react-dom"],
   },
 }));
