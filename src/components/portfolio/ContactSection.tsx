@@ -3,12 +3,35 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, CheckCircle } from "lucide-react";
+import { useState } from "react";
 
 const ContactSection = () => {
-  const handleSubmit = (e: React.FormEvent) => {
-    // FormSubmit will handle the form submission automatically
-    // No need to prevent default behavior
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    
+    try {
+      const response = await fetch('https://formsubmit.co/khadkaarun366@gmail.com', {
+        method: 'POST',
+        body: formData
+      });
+      
+      if (response.ok) {
+        setIsSubmitted(true);
+        form.reset();
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -28,11 +51,25 @@ const ContactSection = () => {
               <CardTitle>Send me a message</CardTitle>
             </CardHeader>
             <CardContent>
-              <form 
-                action="https://formsubmit.co/khadkaarun366@gmail.com" 
-                method="POST" 
-                className="space-y-4"
-              >
+              {isSubmitted ? (
+                <div className="text-center py-8">
+                  <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
+                  <h3 className="text-2xl font-bold text-green-600 mb-2">Successfully Submitted!</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Thank you for your message. I'll get back to you soon!
+                  </p>
+                  <Button 
+                    onClick={() => setIsSubmitted(false)}
+                    variant="outline"
+                  >
+                    Send Another Message
+                  </Button>
+                </div>
+              ) : (
+                <form 
+                  onSubmit={handleSubmit}
+                  className="space-y-4"
+                >
                 {/* FormSubmit Configuration */}
                 <input type="hidden" name="_subject" value="New Contact Form Submission from Portfolio" />
                 <input type="hidden" name="_captcha" value="false" />
@@ -56,10 +93,11 @@ const ContactSection = () => {
                     placeholder="Tell me about your project or opportunity..."
                   />
                 </div>
-                <Button type="submit" className="w-full">
-                  Send Message
+                <Button type="submit" className="w-full" disabled={isSubmitting}>
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
               </form>
+              )}
             </CardContent>
           </Card>
 

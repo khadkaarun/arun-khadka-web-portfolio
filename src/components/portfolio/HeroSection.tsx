@@ -82,7 +82,18 @@ const HeroSection = () => {
         {/* Ultra-creative holographic buttons */}
         <div className="flex flex-col sm:flex-row gap-8 justify-center mb-20">
           <div className="rainbow-border">
-            <Button size="lg" className="bg-gradient-to-r from-neon-purple to-neon-cyan hover:from-neon-pink hover:to-neon-yellow text-black font-bold py-6 px-10 rounded-xl shadow-2xl transition-all duration-500 transform hover:scale-110 neon-glow animate-glow-pulse">
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-neon-purple to-neon-cyan hover:from-neon-pink hover:to-neon-yellow text-black font-bold py-6 px-10 rounded-xl shadow-2xl transition-all duration-500 transform hover:scale-110 neon-glow animate-glow-pulse"
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = '/Arun_Khadka_SoftwareEngineer_Resume.pdf';
+                link.download = 'Arun_Khadka_SoftwareEngineer_Resume.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }}
+            >
               <Download className="mr-3 h-6 w-6" />
               Download Resume
             </Button>
