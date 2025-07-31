@@ -20,7 +20,7 @@ const ProjectsSection = () => {
         "📈 PWA + Capacitor for native mobile experience"
       ],
       github: "https://github.com/khadkaarun/Full-Stack-Restaurant-Website",
-      link: "https://full-stack-restaurant-website.vercel.app/"
+      link: "https://restaurant.arunkhadka.com"
     },
     {
       title: "📈 Nittha Siam Kitchen",
