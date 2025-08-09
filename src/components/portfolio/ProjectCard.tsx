@@ -16,7 +16,16 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ title, type, tech, summary, features, link, github, className }: ProjectCardProps) => {
   return (
-    <Card className={`project-card h-full ${className}`}>
+      <Card
+        className={`project-card h-full tilt-card card-spotlight hover-scale ${className || ""}`}
+        onMouseMove={(e) => {
+          const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          (e.currentTarget as HTMLElement).style.setProperty('--x', x + 'px');
+          (e.currentTarget as HTMLElement).style.setProperty('--y', y + 'px');
+        }}
+      >
       <CardHeader>
         <div className="flex items-start justify-between">
           <div>

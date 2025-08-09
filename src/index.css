@@ -17,16 +17,16 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 220 13% 13%;
 
-    --primary: 250 84% 54%;
+    --primary: 258 72% 60%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 340 75% 55%;
+    --secondary: 12 72% 50%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 220 14.3% 95.9%;
     --muted-foreground: 220 8.9% 46.1%;
 
-    --accent: 42 93% 58%;
+    --accent: 198 72% 42%;
     --accent-foreground: 220 13% 13%;
 
     --destructive: 0 84.2% 60.2%;
@@ -34,15 +34,19 @@ All colors MUST be HSL.
 
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 250 84% 54%;
+    --ring: 258 72% 60%;
 
     --radius: 1rem;
 
     /* Creative Portfolio Colors */
-    --hero-gradient-start: 240 100% 10%;
-    --hero-gradient-mid: 280 100% 20%;
-    --hero-gradient-end: 320 100% 15%;
+    --hero-gradient-start: 230 45% 14%;
+    --hero-gradient-mid: 258 38% 18%;
+    --hero-gradient-end: 200 50% 16%;
     
+    /* Brand palette (used by mesh backgrounds) */
+    --brand-1: var(--primary);
+    --brand-2: var(--accent);
+    --brand-3: 18 86% 62%;
     --neon-cyan: 180 100% 50%;
     --neon-pink: 320 100% 70%;
     --neon-purple: 280 100% 70%;
@@ -57,10 +61,9 @@ All colors MUST be HSL.
     --project-card: 0 0% 100%;
     --project-card-border: 220 13% 88%;
 
-    /* Advanced Gradients */
-    --rainbow-gradient: linear-gradient(45deg, hsl(var(--neon-pink)), hsl(var(--neon-purple)), hsl(var(--neon-cyan)));
-    --cosmic-gradient: linear-gradient(135deg, hsl(240 100% 10%), hsl(280 100% 20%), hsl(320 100% 15%));
-    --aurora-gradient: linear-gradient(90deg, hsl(var(--neon-cyan)), hsl(var(--neon-purple)), hsl(var(--neon-pink)), hsl(var(--neon-yellow)));
+    --rainbow-gradient: linear-gradient(45deg, hsl(340 80% 60%), hsl(258 72% 60%), hsl(198 72% 42%));
+    --cosmic-gradient: linear-gradient(135deg, hsl(var(--hero-gradient-start)), hsl(var(--hero-gradient-mid)), hsl(var(--hero-gradient-end)));
+    --aurora-gradient: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--brand-3)));
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -82,16 +85,16 @@ All colors MUST be HSL.
     --popover: 240 20% 8%;
     --popover-foreground: 280 20% 90%;
 
-    --primary: 250 84% 54%;
+    --primary: 258 72% 60%;
     --primary-foreground: 0 0% 5%;
 
-    --secondary: 340 75% 55%;
+    --secondary: 12 72% 50%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 240 20% 12%;
     --muted-foreground: 280 8% 60%;
 
-    --accent: 42 93% 58%;
+    --accent: 198 72% 42%;
     --accent-foreground: 0 0% 5%;
 
     --destructive: 0 62.8% 30.6%;
@@ -99,12 +102,17 @@ All colors MUST be HSL.
 
     --border: 240 20% 15%;
     --input: 240 20% 15%;
-    --ring: 250 84% 54%;
+    --ring: 258 72% 60%;
 
     /* Creative Dark Mode Colors */
-    --hero-gradient-start: 240 100% 5%;
-    --hero-gradient-mid: 280 100% 8%;
-    --hero-gradient-end: 320 100% 6%;
+    --hero-gradient-start: 235 45% 10%;
+    --hero-gradient-mid: 258 38% 13%;
+    --hero-gradient-end: 210 45% 10%;
+    
+    /* Brand palette (used by mesh backgrounds) */
+    --brand-1: var(--primary);
+    --brand-2: var(--accent);
+    --brand-3: 18 86% 58%;
     
     --neon-cyan: 180 100% 50%;
     --neon-pink: 320 100% 70%;
@@ -137,7 +145,7 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
   }
 
   html {
@@ -267,6 +275,51 @@ All colors MUST be HSL.
     background: hsl(var(--background));
     border-radius: 10px;
   }
+
+  /* New creative but calm system styles */
+  .mesh-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(60rem 40rem at 20% 15%, hsl(var(--brand-1) / 0.22), transparent 40%),
+      radial-gradient(50rem 30rem at 80% 10%, hsl(var(--brand-2) / 0.18), transparent 45%),
+      radial-gradient(55rem 35rem at 30% 85%, hsl(var(--brand-3) / 0.16), transparent 45%),
+      radial-gradient(40rem 28rem at 70% 75%, hsl(var(--primary) / 0.12), transparent 45%);
+  }
+
+  .grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.4) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.4) 1px, transparent 1px);
+    background-size: 36px 36px;
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, black, transparent 70%);
+            mask-image: radial-gradient(circle at 50% 50%, black, transparent 70%);
+    pointer-events: none;
+  }
+
+  .tilt-card {
+    transform-style: preserve-3d;
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .tilt-card:hover {
+    transform: rotateX(3deg) rotateY(-3deg) translateZ(0);
+  }
+
+  .badge-soft {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 9999px;
+    background: hsl(var(--primary) / 0.08);
+    color: hsl(var(--primary));
+    border: 1px solid hsl(var(--primary) / 0.2);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+  }
 }
 
 @layer utilities {
@@ -284,6 +337,23 @@ All colors MUST be HSL.
 
   .animate-glow-pulse {
     animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+  /* Added utilities for buttons and effects */
+  .bg-gradient-brand {
+    background-image: var(--aurora-gradient);
+    background-size: 200% 200%;
+    background-position: center;
+  }
+  .text-gradient-brand {
+    background-image: var(--aurora-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .spotlight {
+    background: radial-gradient(500px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), hsl(var(--primary) / 0.12), transparent 40%);
+    pointer-events: none;
   }
 }
 

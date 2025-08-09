@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Reveal from "@/components/Reveal";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -35,7 +36,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-4">
+    <section id="contact" className="section-grid py-20 px-4 animate-fade-in">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
@@ -46,7 +47,16 @@ const ContactSection = () => {
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Contact Form */}
-          <Card className="project-card">
+          <Reveal>
+            <Card className="project-card tilt-card card-spotlight hover-scale"
+                  onMouseMove={(e) => {
+                    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    (e.currentTarget as HTMLElement).style.setProperty('--x', x + 'px');
+                    (e.currentTarget as HTMLElement).style.setProperty('--y', y + 'px');
+                  }}
+            >
             <CardHeader>
               <CardTitle>Send me a message</CardTitle>
             </CardHeader>
@@ -99,10 +109,12 @@ const ContactSection = () => {
               </form>
               )}
             </CardContent>
-          </Card>
+            </Card>
+          </Reveal>
 
-          {/* Contact Info */}
-          <div className="space-y-8">
+            {/* Contact Info */}
+            <Reveal delay={120}>
+              <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-bold mb-6">Let's Connect</h3>
               <p className="text-muted-foreground mb-8">
@@ -161,6 +173,7 @@ const ContactSection = () => {
               </a>
             </div>
           </div>
+          </Reveal>
         </div>
       </div>
     </section>

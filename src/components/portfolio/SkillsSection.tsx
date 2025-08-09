@@ -1,48 +1,68 @@
+import Reveal from "@/components/Reveal";
+
 const SkillsSection = () => {
   const skillCategories = [
     {
-      title: "Programming Languages",
-      skills: ["JavaScript", "TypeScript", "Python", "Java", "C", "C++"]
+      title: "Frontend Development",
+      skills: [
+        "React", "Next.js", "JavaScript", "TypeScript", "HTML5", "CSS3", "Tailwind CSS", "SASS", "Bootstrap", "Redux"
+      ]
     },
     {
-      title: "Frontend",
-      skills: ["React", "Next.js", "Tailwind CSS", "HTML/CSS", "jQuery"]
+      title: "Backend Development",
+      skills: [
+        "Node.js", "Express.js", "Python", "Java", "REST APIs", "PostgreSQL", "MySQL", "MongoDB", "JWT", "Microservices"
+      ]
     },
     {
-      title: "Backend & Database",
-      skills: ["Supabase", "PostgreSQL", "SQL", "Edge Functions", "Stripe API", "Resend API"]
+      title: "DevOps & Infrastructure",
+      skills: [
+        "Linux", "Docker", "Git", "GitHub Actions", "CI/CD", "AWS", "Nginx", "Bash", "SSH", "SSL/TLS", "System Administration", "Load Balancing", "Cloud Infrastructure", "Monitoring & Logging"
+      ]
     },
     {
-      title: "Tools",
-      skills: ["Git/GitHub", "WordPress", "Capacitor", "Bluehost"]
+      title: "Testing & Methodologies",
+      skills: [
+        "Jest", "Postman", "Unit Testing", "Integration Testing", "Agile", "Scrum", "TDD", "Version Control"
+      ]
     }
   ];
 
   return (
-    <section id="skills" className="py-20 px-4">
-      <div className="max-w-4xl mx-auto">
+    <section id="skills" className="py-20 px-4 diagonal-stripes animate-fade-in">
+      <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Skills & Technologies</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Skills & Tools</h2>
           <p className="text-xl text-muted-foreground">
-            Tools and technologies I use to build modern web applications
+            A pragmatic toolbox for building reliable products
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {skillCategories.map((category, index) => (
-            <div key={index} className="text-center">
-              <h3 className="text-2xl font-bold mb-6 text-primary">{category.title}</h3>
-              <div className="space-y-3">
-                {category.skills.map((skill, skillIndex) => (
-                  <div 
-                    key={skillIndex} 
-                    className="tech-tag text-center block mx-auto w-fit"
-                  >
-                    {skill}
-                  </div>
-                ))}
+            <Reveal key={index} delay={index * 60}>
+              <div className="project-card rounded-xl p-6 tilt-card card-spotlight hover-scale"
+                   onMouseMove={(e) => {
+                     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+                     const x = e.clientX - rect.left;
+                     const y = e.clientY - rect.top;
+                     (e.currentTarget as HTMLElement).style.setProperty('--x', x + 'px');
+                     (e.currentTarget as HTMLElement).style.setProperty('--y', y + 'px');
+                   }}
+              >
+                <h3 className="text-lg font-semibold mb-4 text-primary">{category.title}</h3>
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill, skillIndex) => (
+                    <span
+                      key={skillIndex}
+                      className="tech-tag"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
