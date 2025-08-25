@@ -35,7 +35,7 @@ const HeroSection = () => {
             </p>
 
             <p className="hero-prose text-lg md:text-xl max-w-2xl mb-8">
-              Full‑Stack Software Engineer delivering production‑ready web and mobile apps with React, TypeScript, Node.js, PostgreSQL, and AWS—shipped to 22k+ users with CI/CD, microservices, realtime systems, and automated testing.
+              Full‑Stack Software Engineer delivering production‑ready web and mobile apps with React, TypeScript, Node.js, PostgreSQL, and AWS—shipped to 22k+ unique visitors with CI/CD, microservices, realtime systems, and automated testing.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-8">
